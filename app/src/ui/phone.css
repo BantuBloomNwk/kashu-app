@@ -1,0 +1,17 @@
+.phone3d { position: relative; margin: 0; width: 100%; filter: drop-shadow(0 40px 40px rgba(30, 20, 5, 0.28)) drop-shadow(0 8px 12px rgba(30, 20, 5, 0.22)); }
+.phone3d-frame { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; pointer-events: none; user-select: none; z-index: 2; }
+.phone3d-screen { position: absolute; z-index: 1; container-type: inline-size; background: #0A0B0D; }
+.phone3d-clip { position: absolute; inset: 0; overflow: hidden; display: block; background: var(--paper); border-radius: inherit; }
+.phone3d-clip > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity 420ms var(--ease-out); }
+.phone3d-clip > img.on { opacity: 1; }
+/* glass glare across the screen */
+.phone3d-screen::after { content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(118deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 26%, rgba(255, 255, 255, 0) 27%, rgba(255, 255, 255, 0) 100%); }
+.phone3d figcaption { position: absolute; left: 0; right: 0; top: calc(100% + 0.9rem); text-align: center; font-weight: 700; font-size: 0.9375rem; color: var(--muted); }
+
+.sbar { position: absolute; left: 0; right: 0; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center;
+  font: 700 3.6cqw/1 var(--font-text); color: var(--shell); padding: 3.4cqw 7.5cqw 0 9cqw; pointer-events: none; }
+.sbar-seeker { padding: 2.6cqw 6cqw 0 6.5cqw; font-size: 3.3cqw; }
+.sbar.is-dark { color: var(--moonlight); }
+.sbar-icons { display: inline-flex; gap: 1.4cqw; align-items: center; }
+.sbar-icons svg { height: 2.8cqw; width: auto; fill: currentColor; stroke: currentColor; }

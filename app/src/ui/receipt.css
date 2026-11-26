@@ -1,0 +1,46 @@
+/* a till slip: warm paper, a torn zigzag edge, monospaced figures; it feeds out of a slot */
+.rcpt { position: relative; width: 100%; max-width: 360px; margin: 0 auto; overflow: hidden; padding-bottom: 12px; }
+.rcpt-paper { position: relative; background: #FFFDF6; color: var(--shell); padding: 1.1rem 1.1rem 1.4rem;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 18px 30px -20px rgba(40, 30, 10, 0.45);
+  background-image: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0 23px, rgba(30, 35, 27, 0.025) 23px 24px);
+  /* the torn bottom edge */
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 10px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 16px 10px repeat-x;
+  mask: linear-gradient(#000 0 0) top / 100% calc(100% - 10px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 16px 10px repeat-x;
+  animation: feed 900ms steps(9, end) both; }
+@keyframes feed { from { transform: translateY(-100%); } }
+.rcpt-head { display: flex; align-items: center; gap: 0.6rem; padding-bottom: 0.8rem; border-bottom: 2px dashed rgba(30, 35, 27, 0.25); }
+.rcpt-head b { display: block; font-family: var(--font-display); font-size: 1.25rem; color: var(--canopy-deep); line-height: 1.1; }
+.rcpt-head span { font-size: 0.82rem; color: var(--muted); }
+.rcpt-demo { margin-left: auto; align-self: flex-start; font-size: 0.7rem !important; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1.5px solid var(--apple); color: var(--apple-deep) !important; border-radius: 6px; padding: 0.1rem 0.4rem; transform: rotate(4deg); }
+.rcpt-lines { list-style: none; margin: 0.6rem 0 0; padding: 0; font-size: 0.95rem; }
+.rcpt-lines li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.34rem 0; opacity: 0; animation: line-in 260ms var(--ease-out) both; animation-delay: calc(700ms + var(--i) * 90ms); }
+.rcpt-lines li span { color: var(--muted); }
+.rcpt-lines li b { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+.rcpt-lines li.strong b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; color: var(--canopy-deep); }
+.rcpt-rule { border-top: 1px dashed rgba(30, 35, 27, 0.25); margin: 0.3rem 0; padding: 0 !important; }
+@keyframes line-in { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+.rcpt-stamp { display: inline-block; margin-top: 0.8rem; font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.04em; color: var(--canopy);
+  border: 3px solid var(--canopy); border-radius: 10px; padding: 0.1rem 0.7rem; transform: rotate(-6deg); opacity: 0;
+  animation: stamp 380ms var(--ease-expo) both; animation-delay: calc(800ms + var(--i) * 90ms); }
+@keyframes stamp { from { opacity: 0; transform: rotate(-6deg) scale(1.8); } to { opacity: 0.9; transform: rotate(-6deg) scale(1); } }
+.rcpt-check { display: flex; align-items: center; gap: 0.35rem; margin-top: 1rem; font-size: 0.85rem; font-weight: 700; color: var(--canopy); text-decoration: none;
+  opacity: 0; animation: line-in 260ms var(--ease-out) both; animation-delay: calc(800ms + var(--i) * 90ms); }
+.rcpt-check svg { width: 16px; height: 16px; stroke: currentColor; }
+.rcpt-check:hover { text-decoration: underline; }
+
+/* the sheet: a slot at the top of the screen, the slip feeds down out of it */
+.rcpt-sheet { position: fixed; inset: 0; z-index: 60; display: grid; place-items: start center; padding: calc(4.5rem + var(--safe-t)) 1rem 2rem; overflow-y: auto; }
+.rcpt-scrim { position: fixed; inset: 0; border: 0; background: rgba(14, 22, 20, 0.5); animation: fade-in 220ms var(--ease-out) both; }
+.rcpt-sheet.out .rcpt-scrim { animation: fade-out 200ms var(--ease-out) forwards; }
+.rcpt-sheet.out .rcpt-slot { animation: fade-out 200ms var(--ease-out) forwards; }
+.rcpt-slot { position: relative; width: min(380px, 100%); display: grid; gap: 1rem; justify-items: center; }
+.rcpt-mouth { position: absolute; z-index: 2; top: -12px; left: -8px; right: -8px; height: 16px; border-radius: 10px;
+  background: linear-gradient(#22302A, #0E1714); box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.06), 0 6px 10px rgba(0, 0, 0, 0.35); }
+.rcpt-done { min-width: 160px; opacity: 0; animation: line-in 300ms var(--ease-out) 1.6s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rcpt-paper { animation: fade-in 200ms linear both; }
+  .rcpt-lines li, .rcpt-stamp, .rcpt-check, .rcpt-done { animation: none; opacity: 1; }
+  .rcpt-stamp { opacity: 0.9; }
+}

@@ -1,0 +1,9 @@
+# Advisories reviewed and accepted, each with the reason. Re-check them whenever dependencies change.
+[advisories]
+ignore = [
+  # rkyv 0.7.46 (RUSTSEC-2026-0235): out-of-bounds reads when validating untrusted archives that hold
+  # Rc/Arc. It arrives through MagicBlock's delegation API, which uses only rkyv's AlignedVec for off-chain
+  # commit diffs and never validates an archive. It is not compiled into either on-chain program
+  # (checked in the built .so files). The fix exists only in rkyv 0.8, which the SDK does not allow yet.
+  "RUSTSEC-2026-0235",
+]

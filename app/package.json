@@ -1,0 +1,25 @@
+{
+  "name": "kashu-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5190",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 5191"
+  },
+  "dependencies": {
+    "@fontsource/andika": "5.3.0",
+    "@fontsource/jaro": "5.3.0",
+    "@noble/curves": "1.9.7",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "typescript": "~5.8.3",
+    "vite": "8.3.8"
+  }
+}

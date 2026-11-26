@@ -1,0 +1,33 @@
+# Kashu's relay (container kashu-relay on 127.0.0.1:8840): the app's read-and-send door and fee sponsor.
+kashu-main.161-97-74-212.sslip.io {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		-Server
+	}
+	request_body {
+		max_size 72KB
+	}
+	@ok path /rpc /sponsor /health /funds /avatar /avatar/* /report-photo /rooms-of /wallet-of-key /history /proof /prizes /cheer /submit /pocket-out /push /push-key
+	handle @ok {
+		reverse_proxy 127.0.0.1:8840 {
+			header_up X-Forwarded-For {remote_host}
+			# while a deploy swaps the container, hold requests and retry instead of answering 502
+			lb_try_duration 15s
+			lb_try_interval 250ms
+		}
+	}
+	# the agent service: the private AI chat (it holds no keys)
+	@agent path /agent/chat /agent/attestation /agent/tee
+	handle @agent {
+		reverse_proxy 127.0.0.1:8841 {
+			header_up X-Forwarded-For {remote_host}
+			lb_try_duration 15s
+			lb_try_interval 250ms
+		}
+	}
+	handle {
+		respond 404
+	}
+}

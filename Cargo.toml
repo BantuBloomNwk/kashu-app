@@ -1,0 +1,12 @@
+[workspace]
+members = ["programs/*"]
+resolver = "2"
+
+[workspace.dependencies]
+anchor-lang = "=1.2.1"
+anchor-spl = { version = "=1.2.1", default-features = false, features = ["solana-v3", "token", "token_2022"] }
+
+[profile.release]
+overflow-checks = true
+lto = "fat"
+codegen-units = 1

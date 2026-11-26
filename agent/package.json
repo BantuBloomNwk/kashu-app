@@ -1,0 +1,6 @@
+{
+  "name": "kashu-agent",
+  "private": true,
+  "type": "module",
+  "dependencies": { "@phala/dcap-qvl": "0.7.0", "ethers": "6.15.0" }
+}

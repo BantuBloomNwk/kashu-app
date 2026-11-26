@@ -1,0 +1,107 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--shell);
+  font-family: var(--font-text); font-size: var(--t-body); line-height: 1.5;
+  -webkit-tap-highlight-color: transparent; font-variant-numeric: tabular-nums;
+}
+h1, h2, h3, .display { font-family: var(--font-display); font-weight: 400; line-height: 1.02; letter-spacing: 0.005em; margin: 0; }
+p { margin: 0; }
+button, a.btn { font: inherit; touch-action: manipulation; }
+button { cursor: pointer; border: 0; background: none; color: inherit; }
+:focus-visible { outline: 3px solid var(--apple-deep); outline-offset: 3px; border-radius: 6px; }
+img, svg { display: block; max-width: 100%; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* buttons: one press treatment everywhere */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 52px; padding: 0 1.4rem;
+  border-radius: var(--r-ctl); font-family: var(--font-text); font-weight: 700; font-size: 1.0625rem; text-decoration: none;
+  user-select: none; transition: transform 140ms var(--ease-out), background-color 160ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--canopy); color: var(--paper); }
+.btn-kernel { background: var(--kernel); color: var(--shell); }
+.btn-ghost { background: transparent; color: var(--canopy); box-shadow: inset 0 0 0 2px var(--canopy); }
+.btn-coral { background: var(--apple-deep); color: var(--paper); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { background: var(--canopy-deep); }
+  .btn-kernel:hover { background: var(--kernel-deep); }
+  .btn-ghost:hover { background: rgba(13, 90, 59, 0.06); }
+}
+
+/* reduced motion is handled per component: movement goes, fades and colour stay (DESIGN.md) */
+
+/* rendered sky bodies */
+.moon, .sunr { position: relative; display: inline-block; flex: none; }
+.moon img, .sunr img { position: relative; z-index: 1; width: 100%; height: 100%; display: block; }
+.moon.has-glow::before { content: ''; position: absolute; inset: -45%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 236, 190, 0.32), rgba(255, 236, 190, 0.1) 55%, rgba(255, 236, 190, 0) 100%); }
+.sunr::before { content: ''; position: absolute; inset: -80%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 214, 130, 0.75), rgba(255, 190, 90, 0.28) 38%, rgba(255, 190, 90, 0) 100%); }
+.sunr::after { content: ''; position: absolute; inset: 7%; border-radius: 50%; box-shadow: 0 0 28px 10px rgba(255, 196, 96, 0.7), 0 0 80px 30px rgba(255, 170, 80, 0.3); }
+
+/* ---- the opening: the logo reveal, then the splash lifts away and the page settles in beneath ---- */
+.splash { position: fixed; inset: 0; z-index: 100; display: grid; place-content: center; justify-items: center; gap: 0.4rem; background: rgb(245 246 238); cursor: pointer;
+  padding: env(safe-area-inset-top, 0) 0 env(safe-area-inset-bottom, 0); }
+.splash-logo { width: min(78vw, 420px); aspect-ratio: 720 / 280; }
+.splash-logo video, .splash-logo img { width: 100%; height: 100%; object-fit: contain; display: block;
+  /* the video's background is a lighter cream than the splash: darken keeps the page's colour wherever the video is
+     lighter, so the logo stands alone with no box or halo around it */
+  mix-blend-mode: darken; }
+.splash-tag { margin: 0; letter-spacing: -0.01em; font-family: var(--font-display); font-size: clamp(1.15rem, 4.6vw, 1.5rem); color: var(--canopy); opacity: 0; transform: translateY(8px);
+  transition: opacity 420ms var(--ease-out), transform 520ms var(--ease-expo); }
+.splash-tag::after { content: ''; display: block; height: 3px; width: 0; margin: 0.45rem auto 0; border-radius: 3px; background: var(--kernel); transition: width 600ms var(--ease-expo) 120ms; }
+.splash.is-tag .splash-tag, .splash.is-leave .splash-tag { opacity: 1; transform: none; }
+.splash.is-tag .splash-tag::after, .splash.is-leave .splash-tag::after { width: 64%; }
+.splash.is-leave { pointer-events: none; animation: splash-lift 520ms var(--ease-inout) both; }
+@keyframes splash-lift { to { opacity: 0; transform: scale(1.06); } }
+/* what's beneath settles in as the splash lifts */
+html.splashing body { overflow: hidden; }
+html.arriving #root > :first-child { animation: page-settle 560ms var(--ease-expo) both; }
+@keyframes page-settle { from { opacity: 0.4; transform: scale(0.97); } }
+@media (prefers-reduced-motion: reduce) {
+  .splash.is-leave { animation: fade-out 300ms linear both; }
+  @keyframes fade-out { to { opacity: 0; } }
+  html.arriving #root > :first-child { animation: none; }
+  .splash-tag, .splash-tag::after { transition: opacity 200ms linear; transform: none; }
+}
+
+/* ---- the night opening: dusk, stars arriving one by one, the moon rising, the reverse lockup built part by part ---- */
+.splash.night { background: var(--dusk); }
+.splash.night .splash-tag { color: var(--kernel); }
+.night-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.night-sky .star { position: absolute; border-radius: 50%; background: var(--moonlight); opacity: 0; animation: star-in 900ms var(--ease-out) both; }
+@keyframes star-in { to { opacity: 0.75; } }
+/* the glow is a round gradient behind the orb, not a drop-shadow filter: phone GPUs clip a filter's blur to a square box */
+.night-moon, .day-sun { position: absolute; left: 50%; top: 13%; width: 92px; height: 92px; margin-left: -46px; animation: moon-rise 1400ms var(--ease-expo) both; }
+.night-moon img, .day-sun img { position: relative; z-index: 1; width: 100%; height: 100%; display: block; }
+.night-moon img { filter: brightness(1.35) contrast(1.05); }
+.night-moon::before { content: ''; position: absolute; inset: -40%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in oklab, var(--moonlight) 42%, transparent), transparent); }
+.day-sun { width: 76px; height: 76px; margin-left: -38px; }
+.day-sun::before { content: ''; position: absolute; inset: -70%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 214, 130, 0.7), rgba(255, 190, 90, 0.25) 40%, rgba(255, 190, 90, 0) 100%); }
+@keyframes moon-rise { from { opacity: 0; transform: translateY(40px) scale(0.9); } }
+.night-logo { position: relative; width: min(78vw, 420px); aspect-ratio: 788 / 272; }
+.night-logo svg { width: 100%; height: 100%; overflow: visible; }
+.night-logo #pShadow { opacity: 0; animation: n-fade 400ms linear 150ms forwards; }
+.night-logo #pStem { transform-box: fill-box; transform-origin: 50% 100%; animation: n-stem 520ms var(--ease-expo) 150ms both; }
+.night-logo #pKernel { transform-box: fill-box; transform-origin: 0% 50%; animation: n-kernel 620ms var(--ease-expo) 480ms both; }
+.night-logo #pLeaf { transform-box: fill-box; transform-origin: 100% 100%; animation: n-leaf 460ms var(--ease-expo) 950ms both; }
+.night-logo svg > path:last-of-type { animation: n-word 720ms var(--ease-inout) 1050ms both; }
+@keyframes n-fade { to { opacity: 1; } }
+@keyframes n-stem { from { transform: scaleY(0); opacity: 0; } 20% { opacity: 1; } }
+@keyframes n-kernel { from { transform: rotate(-35deg) scale(0.6); opacity: 0; } }
+@keyframes n-leaf { from { transform: scale(0) rotate(-20deg); } }
+@keyframes n-word { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .night-sky .star { animation: none; opacity: 0.75; } .night-moon { animation: none; }
+  .night-logo #pShadow, .night-logo #pStem, .night-logo #pKernel, .night-logo #pLeaf, .night-logo svg > path:last-of-type { animation: none; opacity: 1; }
+}
+
+/* terms, privacy and draw rules: plain reading pages */
+.legal { max-width: 40rem; margin: 0 auto; padding: calc(2rem + env(safe-area-inset-top, 0px)) max(1.25rem, env(safe-area-inset-left, 0px)) 4rem; color: var(--shell); }
+.legal h1 { font-family: var(--font-display); font-weight: 400; font-size: var(--t-xl); color: var(--canopy-deep); margin: 1rem 0 0.4rem; }
+.legal h2 { font-size: var(--t-md); margin: 1.6rem 0 0.3rem; }
+.legal p { line-height: 1.6; margin: 0; max-width: 65ch; }
+.legal-draft { color: var(--muted); font-size: var(--t-label); }
+.legal-back { color: var(--canopy); font-weight: 700; text-decoration: none; }
+.legal-nav { margin-top: 2.5rem; color: var(--muted); }
+.legal-nav a { color: var(--canopy); }

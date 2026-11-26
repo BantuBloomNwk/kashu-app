@@ -1,0 +1,71 @@
+/* The wall of windows, built to look real: a painted, bevelled frame set into plaster; a dark recess,
+   glass with glazing bars and a reflection; slatted shutters on hinge pins; a stone sill; and when the
+   light is on, warm light spilling down the wall. CSS only, and it moves only transform and opacity. */
+/* The wall of windows. Each window is rendered in Blender (frame, glazing, sill and a small room behind,
+   with the lamp off and on) and the two shutters for each pattern are rendered from the same camera, so
+   the layers line up to the pixel. CSS only stacks them: the lit room fades in over the dark one and the
+   shutters swing on their real hinge lines. Only transform, opacity and filter move. */
+.wall { display: grid; gap: clamp(8px, 2vw, 16px) clamp(6px, 1.6vw, 12px); position: relative; }
+.win { display: flex; flex-direction: column; align-items: center; padding: 0; text-align: center; min-width: 0; position: relative; border-radius: 12px; }
+.win-frame { position: relative; display: block; width: 100%; aspect-ratio: 500 / 560; perspective: 700px; z-index: 1; transition: transform 140ms var(--ease-out); }
+.win-frame::before { content: ''; position: absolute; inset: 1% 9.5% 3.5% 9.5%; border-radius: 6px; pointer-events: none;
+  box-shadow: 5px 9px 16px -4px rgba(40, 28, 10, 0.38), 1px 2px 3px rgba(40, 28, 10, 0.25); }
+.win-frame img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.wf-lit { opacity: 0; transition: opacity 360ms var(--ease-out) 60ms; }
+.win.is-lit .wf-lit { opacity: 1; }
+/* hinge lines: the leaves' outer edges, where the frame's opening meets them (from the render's camera) */
+.ws { backface-visibility: hidden; transition: transform 420ms var(--ease-out), opacity 200ms var(--ease-out); }
+.ws-l { transform-origin: 16.6% 50%; }
+.ws-r { transform-origin: 83.4% 50%; }
+.win.is-lit .ws-l { transform: rotateY(-100deg); }
+.win.is-lit .ws-r { transform: rotateY(100deg); }
+@media (hover: hover) and (pointer: fine) {
+  button.win:hover:not(.is-lit) .ws-l { transform: rotateY(-18deg); }
+  button.win:hover:not(.is-lit) .ws-r { transform: rotateY(18deg); }
+}
+button.win:active .win-frame { transform: scale(0.97); }
+/* warm light spilling down the wall below a lit window */
+.win::after { content: ''; position: absolute; left: -10%; right: -10%; top: 46%; height: 70%; z-index: 0; pointer-events: none;
+  background: radial-gradient(50% 42% at 50% 55%, rgba(255, 200, 110, 0.55), rgba(255, 200, 110, 0) 72%);
+  opacity: 0; transition: opacity 480ms var(--ease-out) 140ms; }
+.win.is-lit::after { opacity: 1; }
+.win.is-hi .win-frame { filter: drop-shadow(0 0 10px rgba(245, 207, 94, 0.95)) drop-shadow(0 0 26px rgba(245, 207, 94, 0.6)); }
+.win.is-glow .win-frame { filter: drop-shadow(0 0 16px rgba(245, 207, 94, 0.8)); }
+button.win:focus-visible { outline: 3px solid var(--kernel-deep); outline-offset: 4px; }
+
+.win-meta { display: flex; flex-direction: column; align-items: center; line-height: 1.2; min-width: 0; max-width: 100%; margin-top: 4px; position: relative; z-index: 2; }
+.win-name { font-weight: 700; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.win.is-you .win-name { background: var(--kernel); color: var(--canopy-deep) !important; border-radius: 999px; padding: 0 0.6em; }
+.win-state { font-size: 0.8125rem; color: var(--muted); }
+.win.is-lit .win-state { color: var(--canopy); font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ws { transition: opacity 200ms linear; }
+  .win.is-lit .ws-l, .win.is-lit .ws-r { transform: none; opacity: 0; }
+  button.win:hover .ws { transform: none !important; }
+}
+
+/* a limewashed wall in late sun: the windows are set into it */
+.facade {
+  position: relative; overflow: hidden; border-radius: 28px; padding: clamp(1.4rem, 4vw, 2.6rem) clamp(1.2rem, 3.5vw, 2.4rem) clamp(1rem, 3vw, 1.8rem);
+  background-color: #EBE2CF;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .3 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23m)'/%3E%3C/svg%3E"),
+    linear-gradient(160deg, #F4EDDC 0%, #E8DDC6 55%, #D9CBB0 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -30px 60px -30px rgba(90, 60, 20, 0.25), 0 40px 70px -40px rgba(60, 40, 10, 0.55), 0 0 0 1px rgba(90, 70, 40, 0.12);
+}
+
+.krow { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+.kseed { width: 22px; height: 22px; fill: var(--mist-2); transition: fill 240ms var(--ease-out), transform 300ms var(--ease-out); }
+.kseed.on { fill: var(--kernel-deep); }
+
+.win-pop { position: absolute; left: 50%; top: 30%; z-index: 6; pointer-events: none; }
+.win-pop svg { position: absolute; width: 20px; height: 20px; margin: -10px; fill: var(--kernel-deep); opacity: 0;
+  animation: winpop 900ms var(--ease-expo) forwards; transform: rotate(var(--a)) translateY(0); }
+.win-pop svg:nth-child(odd) { fill: var(--kernel); }
+@keyframes winpop { 0% { opacity: 1; transform: rotate(var(--a)) translateY(0) scale(0.4); } 70% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-56px) scale(1); } }
+.win:has(.win-pop) .win-frame { animation: knock 360ms var(--ease-out); }
+@keyframes knock { 30% { transform: scale(1.04) rotate(-1deg); } 60% { transform: scale(0.99) rotate(0.6deg); } }
+@media (prefers-reduced-motion: reduce) { .win-pop svg { animation: fade-out 600ms linear forwards; transform: none; } .win:has(.win-pop) .win-frame { animation: none; } }
+@keyframes fade-out { 0% { opacity: 1; } 100% { opacity: 0; } }

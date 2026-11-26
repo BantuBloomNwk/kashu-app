@@ -1,0 +1,21 @@
+/* Kashu tokens: DESIGN.md is the source. */
+:root {
+  --canopy: #0D5A3B; --canopy-deep: #08402A; --paper: #F6F7F1; --mist: #E4EADF; --mist-2: #D5DFD0;
+  --shell: #1E231B; --muted: #464D41; --apple: #E8472F; --apple-deep: #B8301C; --kernel: #F5CF5E;
+  --kernel-deep: #E2B53B; --leaf: #3E8E5E; --dusk: #16263A; --dusk-2: #1E3249; --moonlight: #EEF2F6;
+
+  --font-display: 'Jaro', 'Andika', system-ui, sans-serif;
+  --font-text: 'Andika', system-ui, sans-serif;
+
+  --t-label: 0.875rem; --t-body: 1.0625rem; --t-md: 1.25rem; --t-lg: 1.625rem; --t-xl: 2.125rem; --t-2xl: 2.875rem;
+  --t-hero: clamp(2.9rem, 1.9rem + 4.6vw, 5.4rem);
+
+  --r-ctl: 12px; --r-panel: 20px; --r-sheet: 28px; --r-window: 14px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --safe-b: env(safe-area-inset-bottom, 0px); --safe-t: env(safe-area-inset-top, 0px);
+}

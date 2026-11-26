@@ -1,0 +1,16 @@
+# Security headers for every page. The site loads nothing from anywhere else: its code, fonts and
+# photos are all bundled, so everything outside this site is refused. The exceptions are Kashu's relay
+# (the app's way to the chain), MagicBlock's private rollup (private rooms) and its private payments API (the pocket).
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://kashu-relay.161-97-74-212.sslip.io; font-src 'self'; connect-src 'self' https://kashu-relay.161-97-74-212.sslip.io https://devnet-tee-as.magicblock.app https://payments.magicblock.app; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), serial=(), hid=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+/.well-known/webauthn
+  Content-Type: application/json
+  Access-Control-Allow-Origin: *

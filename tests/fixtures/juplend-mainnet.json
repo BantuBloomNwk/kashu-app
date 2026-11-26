@@ -1,0 +1,85 @@
+{
+ "copiedAtSlot": 472778877,
+ "market": {
+  "cluster": "mainnet",
+  "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "lendingAdmin": "5nmGjA4s7ATzpBQXC5RNceRpaJ7pYw2wKsNBWyuSAZV6",
+  "lending": "2vVYHYM8VYnvZqQWpTJSj8o8DBf1wM8pVs3bsTgYZiqJ",
+  "fTokenMint": "9BEcn9aPEmhSPbPQeFGjidRiEKki46fVQDyPpSQXPA2D",
+  "supplyReserves": "94vK29npVbyRHXH63rRcTiSr26SFhrQTzbpNJuhQEDu",
+  "supplyPosition": "Hf9gtkM4dpVBahVSzEXSVCAPpKzBsBcns3s8As3z77oF",
+  "rateModel": "5pjzT5dFTsXcwixoab1QDLvZQvpYJxJeBphkyfHGn688",
+  "vault": "BmkUoKMFYBxNSzWXyUjyMJjMAaVz4d8ZnxwwmhDCUXFB",
+  "liquidity": "7s1da8DduuBFqGra5bJBjpnvL5E9mGzCuMk1Qkh4or2Z",
+  "rewardsRateModel": "5xSPBiD3TibamAnwHDhZABdB4z4F9dcj5PnbteroBTTd",
+  "claimAccount": "HN1r4VfkDn53xQQfeGDYrNuDKFdemAhZsHYRwBrFhsW"
+ },
+ "accounts": {
+  "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": {
+   "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+   "lamports": 563088209341,
+   "data": "AQAAAJj+huiNm+Lqi8HMpIeLKYjCQPUrhCS/tA7Rot3LXhmbqOH2r6f6HgAGAQEAAABicKqKWcWUBbRShshncubNEm6bil06OFNtN/e0FOi2Zw==",
+   "executable": false
+  },
+  "5nmGjA4s7ATzpBQXC5RNceRpaJ7pYw2wKsNBWyuSAZV6": {
+   "owner": "jup3YeL8QhtSx1e253b2FDvsMNC87fDrgQZivbrndc9",
+   "lamports": 3989240,
+   "data": "Kggh3KMo0gX6ILdkXu7s3KgFuT24xGCJy4WP8NhP5dCkeKPE4Y/klQr+HpfkVsu5LmQqJbULpjlv8kgWS8p0aWOoRZKs1szDsTg54R6eJ1maONOLiULeM/3ZU+PXUBqxQFjvH8Yy7F8LAAEAAAD6ILdkXu7s3KgFuT24xGCJy4WP8NhP5dCkeKPE4Y/klfzYzFU1ltskAFhOjJzqsvT1XIXVN2U/akUuLOSdbKvv/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+   "executable": false
+  },
+  "2vVYHYM8VYnvZqQWpTJSj8o8DBf1wM8pVs3bsTgYZiqJ": {
+   "owner": "jup3YeL8QhtSx1e253b2FDvsMNC87fDrgQZivbrndc9",
+   "lamports": 2255040,
+   "data": "h8dSEPmDtvHG+nrzvtutOj1l82qryXQxsbvkwtL24OR8pgIDRS9dYXl8szytbAyAc7IdpMQ3ZAWF7Tn2sEZyyHpR1gWMtyb6AgAGSaJkbJuRq/cvVvsHRwHJwyp3lX50EzExEKvsHW7PCIBHy6d59AAAAOiW0kj5AAAAoqcDawAAAAACERPvP3H/BclenozhcxbxUXvL+eHEhCG764X4ME0EGPeA4oganO3BaPj9y3TzLqfiwk9dDCxaIuRcmdJ+MiQS/w==",
+   "executable": false
+  },
+  "9BEcn9aPEmhSPbPQeFGjidRiEKki46fVQDyPpSQXPA2D": {
+   "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+   "lamports": 1461601,
+   "data": "AQAAAEcn8RD5rZyCj3b2Rq49ZiVsmScRvvn3bU9qhBHACBPVm5M5Ou2MAQAGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+   "executable": false
+  },
+  "94vK29npVbyRHXH63rRcTiSr26SFhrQTzbpNJuhQEDu": {
+   "owner": "jupeiUmn818Jg1ekPURTpr4mFo29p46vygyykFJ3wZC",
+   "lamports": 2227200,
+   "data": "FRI7h3gUHwzG+nrzvtutOj1l82qryXQxsbvkwtL24OR8pgIDRS9dYaALlkjBRbj5RZq2YJ3lVzxTNSE/wSxwPUW8LYIlCADW6AHoA5khpqcDawAAAADu3qd59AAAAIsNPH34AAAAECcucJNVt5oBAAAAAAAAAAAA3G0cCJJbAQC1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+   "executable": false
+  },
+  "Hf9gtkM4dpVBahVSzEXSVCAPpKzBsBcns3s8As3z77oF": {
+   "owner": "jupeiUmn818Jg1ekPURTpr4mFo29p46vygyykFJ3wZC",
+   "lamports": 1753920,
+   "data": "ytuIdj2xFZIcj71J70/rvu0J/yTO1674UGxqeljWsbxMzyBLGGTIhcb6evO+2606PWXzaqvJdDGxu+TC0vbg5HymAgNFL11hAS9jLZkpkwEAmLGWzJTJAABE1GlqCQAAAKKnA2sAAAAAiBNgVAAApw0AAACAKKVGBwAAAA==",
+   "executable": false
+  },
+  "5pjzT5dFTsXcwixoab1QDLvZQvpYJxJeBphkyfHGn688": {
+   "owner": "jupeiUmn818Jg1ekPURTpr4mFo29p46vygyykFJ3wZC",
+   "lamports": 1259760,
+   "data": "XgPL22uJBKLG+nrzvtutOj1l82qryXQxsbvkwtL24OR8pgIDRS9dYQIAAGAi9AHcBVQkvAI=",
+   "executable": false
+  },
+  "BmkUoKMFYBxNSzWXyUjyMJjMAaVz4d8ZnxwwmhDCUXFB": {
+   "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+   "lamports": 2039281,
+   "data": "xvp6877brTo9ZfNqq8l0MbG75MLS9uDkfKYCA0UvXWFl9d/9fISvdail973OoWIuKzq/h/xTqHG5CFYaOosb3k6Q/P1uPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+   "executable": false
+  },
+  "7s1da8DduuBFqGra5bJBjpnvL5E9mGzCuMk1Qkh4or2Z": {
+   "owner": "jupeiUmn818Jg1ekPURTpr4mFo29p46vygyykFJ3wZC",
+   "lamports": 154851516,
+   "data": "Nvz54omseTr6ILdkXu7s3KgFuT24xGCJy4WP8NhP5dCkeKPE4Y/klbE4OeEenidZmjjTi4lC3jP92VPj11AasUBY7x/GMuxfAP8=",
+   "executable": false
+  },
+  "5xSPBiD3TibamAnwHDhZABdB4z4F9dcj5PnbteroBTTd": {
+   "owner": "jup7TthsMgcR9Y3L277b8Eo9uboVSmu1utkuXHNUKar",
+   "lamports": 1510320,
+   "data": "pkhHg6xKprXG+nrzvtutOj1l82qryXQxsbvkwtL24OR8pgIDRS9dYQDKmjsAAAAAgELxAAAAAAAM09dqAAAAAPMOJqIWAQAAAAAAAAAAAAAAAAAAAAAAAP8=",
+   "executable": false
+  },
+  "HN1r4VfkDn53xQQfeGDYrNuDKFdemAhZsHYRwBrFhsW": {
+   "owner": "jupeiUmn818Jg1ekPURTpr4mFo29p46vygyykFJ3wZC",
+   "lamports": 1447680,
+   "data": "5I7DteSTINFHJ/EQ+a2cgo929kauPWYlbJknEb75921PaoQRwAgT1QAAAAAAAAAAxvp6877brTo9ZfNqq8l0MbG75MLS9uDkfKYCA0UvXWE=",
+   "executable": false
+  }
+ }
+}

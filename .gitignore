@@ -1,0 +1,7 @@
+target/
+node_modules/
+*.so
+*-keypair.json
+id.json
+.env*
+app/dist

@@ -1,0 +1,35 @@
+/* reveals: rise in once, staggered in threes */
+.rv { opacity: 0; transform: translateY(18px); transition: opacity 620ms var(--ease-expo), transform 620ms var(--ease-expo); transition-delay: calc(var(--i, 0) * 80ms); }
+.rv.in { opacity: 1; transform: none; }
+
+/* highlighter sweep behind a key word */
+.sweep { background: none; color: inherit; position: relative; z-index: 0; white-space: nowrap; }
+.sweep::before { content: ''; position: absolute; z-index: -1; left: -0.08em; right: -0.08em; bottom: 0.06em; height: 0.42em; border-radius: 0.12em;
+  background: var(--kernel); transform: scaleX(0); transform-origin: left center; transition: transform 700ms var(--ease-expo) 250ms; }
+.sweep-leaf::before { background: #BFE3C9; }
+.views .sweep::before, .drawband .sweep::before { height: 0.14em; bottom: -0.04em; }
+.sweep.in::before { transform: scaleX(1); }
+
+/* odometer: each digit is a reel of 0-9 that rolls to its value */
+.odo { display: inline-block; font-variant-numeric: tabular-nums; }
+.odo-row { display: inline-flex; align-items: flex-end; }
+.odo-col { display: inline-block; height: 1.15em; line-height: 1.15em; overflow: hidden; vertical-align: bottom; }
+.odo-reel { display: flex; flex-direction: column; transform: translateY(0); transition: transform 900ms var(--ease-expo); transition-delay: calc(var(--k) * 45ms); }
+.odo-reel > span { height: 1.15em; }
+.odo.in .odo-reel { transform: translateY(calc(var(--d) * -1.15em)); }
+.odo-ch { display: inline-block; height: 1.15em; line-height: 1.15em; }
+
+/* split-flap board */
+.flap { display: inline-flex; gap: 0.12em; }
+.flap-cell { position: relative; display: inline-grid; place-items: center; width: 0.92em; height: 1.2em; border-radius: 0.12em; overflow: hidden;
+  background: linear-gradient(180deg, #0F2E22 0 49.5%, #0A2419 50.5% 100%); color: var(--kernel); box-shadow: inset 0 -2px 0 rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.3); }
+.flap-cell::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, 0.55); }
+.flap-ch { display: block; animation: flap 140ms var(--ease-out); }
+@keyframes flap { from { transform: translateY(-35%); opacity: 0.2; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+  .sweep::before { transform: scaleX(1); transition: none; }
+  .odo-reel { transition: none; }
+  .flap-ch { animation: none; }
+}
