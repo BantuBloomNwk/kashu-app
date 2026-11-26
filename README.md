@@ -235,6 +235,13 @@ saving, none on taking your money out, and none on your savings themselves.
   takes nothing.
 - **Sponsors** can add to a prize pot. That money goes to the winner in full.
 
+## After Blitz
+
+- **Rooms that stay close.** Up to 12 friends, with simple rules everyone shares and the program enforces, so every seat goes to someone who's really saving.
+- **More to do together.** New ways for a room to play and grow its money, kept just as private.
+- **Kashu on Android and Seeker.** A native app, not a wrapped website.
+- **Real money, carefully.** An outside audit, then an invite-only beta with small limits.
+
 ## Road to mainnet
 
 Done and running on devnet: the vault, lending on Jupiter Lend, private rooms on MagicBlock's TEE

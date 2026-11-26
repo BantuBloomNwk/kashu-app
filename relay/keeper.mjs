@@ -178,6 +178,8 @@ async function tendPrivate(room) {
     await send([await R.shareRoomIx({ payer: me, room, owners: r.roster })], `${r.name}: reader list checked`, await teeRpc()).then(() => sharedOnce.add(room), (e) => log(`share ${r.name}: ${errText(e)}`));
   }
   const on = await teeRpc();
+  // the sponsor bonus goes in as soon as someone has saved this week, so the pot shows it all week (not a minute before the draw)
+  if (BONUS > 0n && r.tickets > 0) await bonus(room, r).catch((e) => log(`bonus ${r.name}: ${errText(e)}`));
   const now = Math.floor(Date.now() / 1000);
   if (now < Number(r.weekStartsAt) + WEEK) {
     for (const owner of r.roster) {
@@ -235,6 +237,7 @@ async function tend({ address: room, room: r, private: away }) {
   if (away) return tendPrivate(room);
   // rooms from before member records carried a viewer key can't be settled any more: left alone, logged once
   if (legacy.has(room)) return;
+  if (BONUS > 0n && r.tickets > 0) await bonus(room, r).catch((e) => log(`bonus ${r.name}: ${errText(e)}`));
   // member records from before viewer keys are brought up to date (Kashu pays the few extra bytes of rent)
   for (const owner of r.roster) {
     const at = await R.memberPda(room, owner), m = await bytes(at);
